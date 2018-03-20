@@ -39,17 +39,39 @@ A collection of linux sysadmin/devops interview questions. Feel free to contribu
 
 * What did you learn yesterday/this week?
 * Talk about your preferred development/administration environment. (OS, Editor, Browsers, Tools etc.)
+Ubuntu/Debian, nano/sublime/brackets, mc, docker, Rancher, Chrome, bash/zsh
+
 * Tell me about the last major Linux project you finished.
 * Tell me about the biggest mistake you've made in [some recent time period] and how you would do it differently today. What did you learn from this experience?
+  испортил файловую систему сервера. научило бэкапить данные _непосредственно перед_ каждым серьезным действием.
+
 * Why we must choose you?
 * What function does DNS play on a network?
+распределенная система именования доменных имен
+
 * What is HTTP?
+протокол уровня приложений для доставки «гипертекстового» контента 
+
 * What is an HTTP proxy and how does it work?
+промежуточный сервер между конечной точкой доставки HTTP-контента и веб-сервером, применяется для прозрачного выполнения косвенных запросов (для кэширования, либо для передачи запросов из "серых" сетей)
+
 * Describe briefly how HTTPS works.
+расширение протокола http для шифрования трафика(при помощи сертификатов SSL или TLS, выданных доверенными регистраторами)
+
 * What is SMTP? Give the basic scenario of how a mail message is delivered via SMTP.
+Простой протокол передачи почтовых сообщений. Текстовый "HELO EHLO" со всеми вытекающими.
+
 * What is RAID? What is RAID0, RAID1, RAID5, RAID10?
+0 - страйп
+1 - миррор
+5 - по сути страйп с сохранением бита четности на дополнительном диске (на двух распределяем данные, на третьм храним бит, позволяющий восстановить данные при утере одного из дисков)
+10 - страйп + миррор (4 диска, лишняя избыточность)
+
 * What is a level 0 backup? What is an incremental backup?
+Полный бэкап. Инкрементальный бэкап хранит разницу между текущим уровнем и предыдущим вплоть до нулевого
+
 * Describe the general file system hierarchy of a Linux system.
+ман Filesystem Hierarchy Standard
 
 
 #### [[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
