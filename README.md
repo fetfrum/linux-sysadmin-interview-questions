@@ -377,15 +377,41 @@ dpkg -L
 #### [[⬆]](#toc) <a name='hard'>Hard Linux Questions:</a>
 
 * What is a tunnel and how you can bypass a http proxy?
+
+
 * What is the difference between IDS and IPS?
+IDS (система обнаружения вторжений) и IPS (система предотвращения вторжений) 
+
 * What shortcuts do you use on a regular basis?
+Ctrl +R : обратный поиск
+W : удаление слова перед курсором
+U : удалить команду
+C : прерывание последней команды 
+W : прибить сессию терминала
+
+Alt + F(1-6) : перейти в tty
+
 * What is the Linux Standard Base?
+стандарт совместимости дистрибутивов линуск
+
 * What is an atomic operation?
+неделимая на составляющие операция (например cp namefile namefile2)
+
 * Your freshly configured http server is not running after a restart, what can you do?
+смотрю в логи, смотрю, не висит ли кто-то уже на 80-м порту
+
 * What kind of keys are in ~/.ssh/authorized_keys and what it is this file used for?
+файлы публичных ssh-ключей пользователей, которые могут подключаться к серверу. имея приватный ключ пользователя к серверу можно подключаться без пароля
+
 * I've added my public ssh key into authorized_keys but I'm still getting a password prompt, what can be wrong?
+приватный ключ (на клиентской стороне) может иметь пароль доступа
+
 * Did you ever create RPM's, DEB's or solaris pkg's?
+да, с помощью утилиты alien
+
 * What does ```:(){ :|:& };:``` do on your system?
+
+
 * How do you catch a Linux signal on a script?
 * Can you catch a SIGKILL?
 * What's happening when the Linux kernel is starting the OOM killer and how does it choose which process to kill first?
