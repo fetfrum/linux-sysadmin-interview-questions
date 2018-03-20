@@ -169,66 +169,210 @@ init=/bin/sh
 
 * What do the following commands do and how would you use them?
  * ```tee```
+ пишем в файл
+ 
  * ```awk```
+ процессор обработки текстовых файлов (чаще всего в табличном виде)
+ 
  * ```tr```
+ посимвольная обработка строки (например, замена знака)
+ 
  * ```cut```
+ конкатенатор файлов
+ 
  * ```tac```
+ конкатенатор в реверсивном режиме
+ 
  * ```curl```
+ программа для формирования http-запросов
+ 
  * ```wget```
+ получение "файлов" по http-протоколу
+ 
  * ```watch```
+ перезапускатель команды через определенный промежуток времени
+ 
  * ```head```
+ смотрим определенное количество строк в начале файла
+ 
  * ```tail```
+ в конце файла
+ 
 * What does an ```&``` after a command do?
+отправляем задачу в фон
+
 * What does ```& disown``` after a command do?
+отправляем задачу в фон и разрываем связь с "родителем"
+
 * What is a packet filter and how does it work?
+фильтр соединений (iptables, ufw)
+
 * What is Virtual Memory?
+адресация памяти без привязки к физическому устройству памяти
+
 * What is swap and what is it used for?
+файл подкачки страничной памяти
+
 * What is an A record, an NS record, a PTR record, a CNAME record, an MX record?
+  ресурсные записи dns:
+  A -  адрес
+  NS - неймсервер
+  PTR - обратная зона (канон)
+  CNAME - алиас адреса
+  MX - почтовый маршрутизатор
+
 * Are there any other RRs and what are they used for?
+  их много, например SRV, SOA или TXT
+
 * What is a Split-Horizon DNS?
+разделение DNS по доступу
+
 * What is the sticky bit?
+дополнительный бит доступа, для того, чтобы только владелец каталога мог удалить файл (или запустить файл от имени владельца файла)
+
 * What does the immutable bit do to a file?
+атрибут неизменяемости
+
 * What is the difference between hardlinks and symlinks? What happens when you remove the source to a symlink/hardlink?
+хардлинк линкует иноду с дополнительным именем, симлинк создает "ярлык". хардлинкт _только_ на одной файловой, симлинк - где угодно. харлинк равнозначени имени (удаление "исходного" файла не портит хардлинк), симлинк не отвечает за это
+
 * What is an inode and what fields are stored in an inode?
+адресный идентификатор (фактически ссылка на сектор/блок, если вульгарно интерпретировать)
+
 * How to force/trigger a file system check on next reboot?
+``` # touch /forcefsck```
+
+
 * What is SNMP and what is it used for?
+упрощеная реализация ntp, пинги :)
+
 * What is a runlevel and how to get the current runlevel?
+who -r
+
 * What is SSH port forwarding?
+туннелирование порта через ssh
+
 * What is the difference between local and remote port forwarding?
+Локальная переадресация делает удаленный порт локально доступным.
+Удаленная переадресация делает локальный порт удаленно доступным.
+
 * What are the steps to add a user to a system without using useradd/adduser?
+править напрямую файл /etc/passwd
+
 * What is MAJOR and MINOR numbers of special files?
+Драйвер, физическое устройство
+
 * Describe the mknod command and when you'd use it.
+создание специального файла блочного устройства
+
 * Describe a scenario when you get a "filesystem is full" error, but 'df' shows there is free space.
+закончились иноды
+
 * Describe a scenario when deleting a file, but 'df' not showing the space being freed.
+есть хардлинк, инода открыта
+
 * Describe how 'ps' works.
+список процессов и их PID
+
 * What happens to a child process that dies and has no parent process to wait for it and what’s bad about this?
+зомби,kill -9 PID
+
 * Explain briefly each one of the process states.
+R - работает
+D - спит, непрерываемо (ждет ответа от IO)
+S - спит прерываемо (ожидает действий)
+Z - зомби
+T - умирает
+
 * How to know which process listens on a specific port?
+netstat
+fuser
+lsof /proc/$pid/
+
 * What is a zombie process and what could be the cause of it?
+процесс закончил выполнение, но не передал родительскому процессу сигнала о том, что он умер. Процесс при завершении освобождает все свои ресурсы (за исключением PID — идентификатора процесса) и становится «зомби» — пустой записью в таблице процессов, хранящей код завершения для родительского процесса. 
+
 * You run a bash script and you want to see its output on your terminal and save it to a file at the same time. How could you do it?
+
+"программа" 2>&1 | tee my.log
+
 * Explain what echo "1" > /proc/sys/net/ipv4/ip_forward does.
+передаем единичку в файл /proc/sys/net/ipv4/ip_forward 
+по факту включаем маскарад сети
+
 * Describe briefly the steps you need to take in order to create and install a valid certificate for the site https://foo.example.com.
+man let's encrypt
+
 * Can you have several HTTPS virtual hosts sharing the same IP?
+да
+
 * What is a wildcard certificate?
+сертификаты, применямые по маске * ко всем дочерним доменам сертификата
+
 * Which Linux file types do you know?
+Обычные файлы
+Файлы директорий
+Специальные файлы:
+Блочные устройства
+Символьные устройства
+Именованые каналы
+Символические ссылки
+Сокет-файлы
+
 * What is the difference between a process and a thread? And parent and child processes after a fork system call?
+Поток является частью процесса. У одного процесса может быть несколько потоков. Процесс имеет PID, нить — нет.
+
 * What is the difference between exec and fork?
+системный вызов exec порождает новый процесс, порождается от исполняемого файла. Системный вызов fork порожает практически идентичный процесс для уже запущенного, от которого порождается потомок.
+
 * What is "nohup" used for?
+UNIX-утилита, запускающая указанную команду с игнорированием сигналов потери связи (SIGHUP). Таким образом, команда будет продолжать выполняться в фоновом режиме и после того, как пользователь выйдет из систем (разрывает связь со стандартными потоками ввода-вывода.
+
 * What is the difference between these two commands?
  * ```myvar=hello```
+ объявляет переменную только для процесса, запускаемого вместе с объявляемой переменной окружения
+ 
  * ```export myvar=hello```
+ применяется для всего сеанса 
+ 
 * How many NTP servers would you configure in your local ntp.conf?
+4
+
 * What does the column 'reach' mean in ```ntpq -p``` output?
-* You need to upgrade kernel at 100-1000 servers, how you would do this?
+состояние восьми последних попыток запроса времени у сервера в восьмеричном представлении (в случае успешной попытки устанавливается соответствующий бит);
+
+
+* You need to upgrade kernel at 100-1000 servers, how you would do this
+ansible puppets or other
+
 * How can you get Host, Channel, ID, LUN of SCSI disk?
+cat /proc/scsi/scsi
+
 * How can you limit process memory usage?
+cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+
 * What is bash quick substitution/caret replace(^x^y)?
+заменит x на y
+
 * Do you know of any alternative shells? If so, have you used any?
+sh, zsh, csh, fish, ash, ksh
+
 * What is a tarpipe (or, how would you go about copying everything, including hardlinks and special files, from one server to another)?
+закатать в tar (tar сохраняет только одну копию файла с хардлинками)
+
 * How can you tell if the httpd package was already installed?
+apt-cache policy apache2
+
+
 * How can you list the contents of a package?
+dpkg -L
+
 * How can you determine which package is better: openssh-server-5.3p1-118.1.el6_8.x86_64 or openssh-server-6.6p1-1.el6.x86_64 ?
+второй лучше (версия новее)
+
 * Can you explain to me the difference between block based, and object based storage?
+сущность хранения блочного устройства — инода (один файл — много инод), в OBS — файл с метаданными (может быть поверх блочного устройства.
+
 
 #### [[⬆]](#toc) <a name='hard'>Hard Linux Questions:</a>
 
