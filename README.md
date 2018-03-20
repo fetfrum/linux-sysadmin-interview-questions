@@ -77,34 +77,93 @@ Ubuntu/Debian, nano/sublime/brackets, mc, docker, Rancher, Chrome, bash/zsh
 #### [[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
 
 * What is the name and the UID of the administrator user?
+root/0
+
 * How to list all files, including hidden ones, in a directory?
+ls -a
 * What is the Unix/Linux command to remove a directory and its contents?
+rm -R *
+
 * Which command will show you free/used memory? Does free memory exist on Linux?
-* How to search for the string "my konfi is the best" in files of a directory recursively?
+free
+
+* How to search for the string "my konfi is the best" in files of a directory recursively
+grep -rn word /directory
+
 * How to connect to a remote server or what is SSH?
+ssh user@server
+
 * How to get all environment variables and how can you use them?
+env
+
 * I get "command not found" when I run ```ifconfig -a```. What can be wrong?
+use ip, Luke!
+
 * What happens if I type TAB-TAB?
+список команд
+
 * What command will show the available disk space on the Unix/Linux system?
+df -h
+
 * What commands do you know that can be used to check DNS records?
+nslookup, host, dig
+
 * What Unix/Linux commands will alter a files ownership, files permissions?
+ls -l
+
 * What does ```chmod +x FILENAME``` do?
+добавляет исполняемый бит к FILENAME
+
 * What does the permission 0750 on a file mean?
+Исполняемый/доступный для записи для владельца, исполняемый/читаемый для группы, недоступный для всех
+
 * What does the permission 0750 on a directory mean?
+доступная для записи/читаемая для владельца, читаемая группой, недоступная всем
+
 * How to add a new system user without login permissions?
+шелл /bin/false или /bin/sbin/nologin
+
 * How to add/remove a group from a user?
+adduser igor sudo
+
 * What is a bash alias?
+короткий псевдоним для команды (команд)
+
 * How do you set the mail address of the root/a user?
+man ~/.forward или /etc/aliases
+
 * What does CTRL-c do?
+прерывает выполнение и выбрасывает в шелл (традиционно в юниксах)
+
 * What is in /etc/services?
+список сетевых сервисов
+
 * How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)
+yourcommand &>filename
+
 * What is the difference between UNIX and Linux.
+- коммерческая система, которая принадлежала AT&T (а теперь ее наследникам)
+- ядро, разрабатываемое сообществом. по некоторым признакам не является полностью удовлетворяющей стандартам UNIX
+
 * What is the difference between Telnet and SSH?
+нешифруется/шифруется
+
 * Explain the three load averages and what do they indicate. What command can be used to view the load averages?
+1, 5, 15 минут. 
+top, w, uptime, cat /proc/loadawr
+
 * Can you name a lower-case letter that is not a valid option for GNU ```ls```?
+-e :)
+
 * What is a Linux kernel module?
+бинарный (динамически загружаемый) объект уровня ring 0, который позволяет добавить в ядро необходимый функционал
+
 * Walk me through the steps in booting into single user mode to troubleshoot a problem.
+смотрим в grub 
+init=/bin/sh
+
 * Walk me through the steps you'd take to troubleshoot a 404 error on a web application you administer.
+недоступен адрес страницы
 
 #### [[⬆]](#toc) <a name='medium'>Medium Linux Questions:</a>
 
