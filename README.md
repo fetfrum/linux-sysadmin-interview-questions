@@ -410,21 +410,64 @@ Alt + F(1-6) : перейти в tty
 да, с помощью утилиты alien
 
 * What does ```:(){ :|:& };:``` do on your system?
-
+похоже на форк-бомбу, нефик запускать всякую муть
 
 * How do you catch a Linux signal on a script?
-* Can you catch a SIGKILL?
-* What's happening when the Linux kernel is starting the OOM killer and how does it choose which process to kill first?
-* Describe the linux boot process with as much detail as possible, starting from when the system is powered on and ending when you get a prompt.
-* What's a chroot jail?
-* When trying to umount a directory it says it's busy, how to find out which PID holds the directory?
-* What's LD_PRELOAD and when it's used?
-* You ran a binary and nothing happened. How would you debug this?
-* What are cgroups? Can you specify a scenario where you could use them?
-* How can you remove/delete a file with file-name consisting of only non-printable/non-type-able characters?
-* How can you increase or decrease the priority of a process in Linux?
-* What are run-levels in Linux?
+trap
 
+* Can you catch a SIGKILL?
+вроде нет
+
+* What's happening when the Linux kernel is starting the OOM killer and how does it choose which process to kill first?
+Мы должны потерять минимум работы
+Мы должны освободить много памяти
+Мы не должны убивать невиновных в пожирании большого количества памяти
+Мы хотим убить как можно меньше процессов (в идеале - один)
+Результат работы должен быть предсказуемым
+Далее идёт подсчёт очков виновности процессов и процессы (или потоки), набравшие больше всего баллов, жестоко убиваются.
+
+Вот так идёт подсчёт очков:
+Считаем RSS процесса
+Добавляем RSS всех дочерних процессов
+Если процесс долго живёт, то значение уменьшается
+Если у процесса niceness больше 0, то значение увеличивается.
+Если есть флаги CAP_SYS_ADMIN или CAP_SYS_RAWIO, результат уменьшается
+Смотрится знаечение /proc/<pid>/oom_adj, которое может задавать пользователь, чтобы повышаться сопротивляемость OOM Killer'у. Вроде как это уже deprecated и нужно использовать oomscore_adj.
+
+
+* Describe the linux boot process with as much detail as possible, starting from when the system is powered on and ending when you get a prompt.
+...
+
+* What's a chroot jail?
+отдельный _файловый_ рут (процессы он не контроллирует, они работают в пределах одного и того же неймспейса cgroup
+
+* When trying to umount a directory it says it's busy, how to find out which PID holds the directory?
+lsof
+
+* What's LD_PRELOAD and when it's used?
+возможность подменить одни системные вызовы другими.
+
+* You ran a binary and nothing happened. How would you debug this?
+GBD
+
+* What are cgroups? Can you specify a scenario where you could use them?
+способ изолирования неймспейсов процесса ядром (можно запустить процесс, который будет думать, что он PID1 с предоставленным окружением)
+
+* How can you remove/delete a file with file-name consisting of only non-printable/non-type-able characters?
+find и regexp в руки.
+
+* How can you increase or decrease the priority of a process in Linux?
+nice (меньше — лучше)
+
+* What are run-levels in Linux?
+уровни исполнения демонов Linux
+0 выключение 
+1 загрузка в синглмоде
+2 не используется
+3 многопользовательский режим (стандартный сервер)
+4 не используется
+5 графическая оболочка (стандартный воркстейшн)
+6 перезагрузка
 
 #### [[⬆]](#toc) <a name='expert'>Expert Linux Questions:</a>
 
